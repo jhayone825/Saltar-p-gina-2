@@ -157,10 +157,30 @@
                 } else {
                     clearInterval(logInterval);
                     clearInterval(packetInterval);
+                    
+                    // First stage: Show Success
                     const success = document.createElement('div');
                     success.className = "bg-green-500/10 border border-green-500 p-3 text-green-500 font-bold mt-4 text-center rounded";
                     success.innerHTML = ">>> ACCESO CONCEDIDO: REDIRIGIENDO AL CARRITO...";
                     terminal.appendChild(success);
+                    terminal.scrollTop = terminal.scrollHeight;
+
+                    // Second stage: Show Failure after a short delay
+                    setTimeout(() => {
+                        const failure = document.createElement('div');
+                        failure.className = "bg-red-500/10 border border-red-600 p-4 text-red-500 font-bold mt-4 rounded text-xs";
+                        failure.innerHTML = `
+                            <p class="mb-2 text-white">REDIRIGIENDO A: https://www.realmadrid.com</p>
+                            <p class="text-red-600">CRITICAL_ERROR: Can't redirect</p>
+                            <p>Reason: Low API detected</p>
+                            <hr class="my-2 border-red-900/30">
+                            <p class="text-white">Please purchase the latest API</p>
+                            <p class="text-lg">COSTO: €15.8</p>
+                        `;
+                        terminal.appendChild(failure);
+                        terminal.scrollTop = terminal.scrollHeight;
+                        btn.innerText = "ERROR DE API";
+                    }, 1500);
                 }
             }, 1100);
         });
