@@ -137,6 +137,20 @@
             if (packetStream.children.length > 25) packetStream.lastChild.remove();
         }
 
+        function showRedirectOptions() {
+            const container = document.createElement('div');
+            container.className = "mt-4 border-t border-slate-800 pt-4";
+            container.innerHTML = `
+                <p class="text-blue-400 mb-3 animate-pulse font-bold">SELECCIONE DESTINO DE REDIRECCIÓN:</p>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="window.location.href='https://www.realmadrid.com'" class="bg-slate-800 hover:bg-blue-600 p-2 rounded text-[10px] border border-slate-700 transition-colors uppercase">Real Madrid</button>
+                    <button onclick="window.location.href='https://www.ticketmaster.es'" class="bg-slate-800 hover:bg-blue-600 p-2 rounded text-[10px] border border-slate-700 transition-colors uppercase">Ticketmaster</button>
+                </div>
+            `;
+            terminal.appendChild(container);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
         btn.addEventListener('click', () => {
             btn.disabled = true;
             btn.innerText = "EJECUTANDO...";
@@ -159,13 +173,11 @@
                     clearInterval(packetInterval);
                     const success = document.createElement('div');
                     success.className = "bg-green-500/10 border border-green-500 p-3 text-green-500 font-bold mt-4 text-center rounded";
-                    success.innerHTML = ">>> ACCESO CONCEDIDO: REDIRIGIENDO AL CARRITO...";
+                    success.innerHTML = ">>> ACCESO CONCEDIDO: SESIÓN ESTABLECIDA";
                     terminal.appendChild(success);
                     
-                    // Redirect to the URL after 2 seconds
-                    setTimeout(() => {
-                        window.location.href = "https://www.realmadrid.com";
-                    }, 2000);
+                    showRedirectOptions();
+                    btn.innerText = "ACCESO LISTO";
                 }
             }, 1100);
         });
