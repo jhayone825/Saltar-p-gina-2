@@ -3,93 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CloudSEK | Security Intercept</title>
+    <title>Estado del Sistema | Real Madrid CF</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-        body { font-family: 'JetBrains+Mono', monospace; background-color: #020617; }
-        .scanning { background: linear-gradient(to bottom, transparent 50%, rgba(245, 158, 11, 0.05) 50%); background-size: 100% 4px; }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; }
-        .warning-pulse { animation: warning-pulse 1.5s infinite; }
-        @keyframes warning-pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;700;900&display=swap');
+        
+        body { 
+            font-family: 'Libre+Franklin', sans-serif; 
+            background-color: #000000; 
+            margin: 0; 
+            overflow: hidden; 
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Pantalla completa de bloqueo */
+        .stop-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .bot-stopped-title {
+            font-size: 5rem;
+            font-weight: 900;
+            font-style: italic;
+            color: #ff0000;
+            text-transform: uppercase;
+            line-height: 0.9;
+            letter-spacing: -0.05em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+            animation: flash 1.5s infinite;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background-color: #ff0000;
+            color: white;
+            padding: 5px 15px;
+            font-weight: 900;
+            border-radius: 4px;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+        }
+
+        .admin-msg {
+            color: #64748b;
+            font-size: 1.2rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+        }
+
+        @keyframes flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Líneas de interferencia decorativas */
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 0, 0, 0.1);
+            position: absolute;
+            top: 50%;
+            animation: scan 4s linear infinite;
+        }
+
+        @keyframes scan {
+            from { top: 0%; }
+            to { top: 100%; }
+        }
     </style>
 </head>
-<body class="text-slate-300 p-6 flex justify-center items-center min-h-screen scanning">
+<body>
 
-    <div class="w-full max-w-5xl grid grid-cols-12 gap-4">
-        
-        <div class="col-span-12 lg:col-span-4 space-y-4">
-            <div class="bg-slate-900 border border-amber-900/30 p-4 rounded-lg shadow-lg">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-[10px] font-bold text-amber-500 tracking-tighter uppercase italic">CloudSEK Monitor</h3>
-                    <span class="text-[8px] bg-amber-950 text-amber-500 px-2 py-0.5 rounded border border-amber-500/30">ACTIVE_BLOCK</span>
-                </div>
-                <div class="space-y-3 text-[10px]">
-                    <div class="flex justify-between items-center text-red-500">
-                        <span>API_LOAD_STATUS</span>
-                        <span class="font-bold">CRITICAL</span>
-                    </div>
-                    <div class="flex justify-between items-center text-slate-500">
-                        <span>GEO_LOCATION</span>
-                        <span class="text-amber-500">LOW_API_ZONE</span>
-                    </div>
-                    <div class="flex justify-between items-center text-slate-500">
-                        <span>REQUEST_RATE</span>
-                        <span class="text-red-500 uppercase">Blocked</span>
-                    </div>
-                </div>
-            </div>
+    <div class="scanline"></div>
 
-            <div class="bg-black border border-slate-800 p-4 rounded-lg">
-                <h3 class="text-[10px] font-bold text-slate-500 mb-2 uppercase italic">Security Incident ID</h3>
-                <code class="text-[9px] text-blue-400">CS-7729-ERR-X</code>
-            </div>
-        </div>
-
-        <div class="col-span-12 lg:col-span-8 space-y-4">
-            <div class="bg-slate-900 border border-slate-800 p-8 rounded-xl shadow-2xl relative">
-                
-                <div class="flex items-start space-x-4 mb-8">
-                    <div class="p-3 bg-red-600/10 border border-red-600 rounded-lg warning-pulse">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <h1 class="text-xl font-bold text-white tracking-tight uppercase">Access Denied by CloudSEK</h1>
-                        <p class="text-red-500 text-xs font-bold mt-1 uppercase">We are sorry for the inconvenience</p>
-                    </div>
-                </div>
-
-                <div class="bg-black/50 border-l-4 border-amber-600 p-4 mb-6">
-                    <p class="text-xs text-slate-300 leading-relaxed">
-                        The site is down due to a <span class="text-amber-500 font-bold">Protocol Error</span>. 
-                        CloudSEK blocked the site because of <span class="text-white">heavy load</span> detected with <span class="text-white">low API country</span> priority.
-                    </p>
-                </div>
-
-                <div id="terminal" class="bg-black rounded p-4 h-40 overflow-hidden font-mono text-[10px] text-slate-500 border border-slate-800 mb-6">
-                    <p class="text-red-900">[!] CloudSEK Intercept: Rate limiting applied</p>
-                    <p>[*] Checking Origin IP...</p>
-                    <p>[*] Target: Real Madrid Ticket API</p>
-                    <p class="text-amber-700">[FAIL] Low Tier API Country detected (Restriction active)</p>
-                    <p class="text-slate-700"># System integrity: Suspended</p>
-                </div>
-
-                <div class="flex flex-col sm:flex-row items-center justify-between p-6 bg-blue-900/5 border border-blue-500/20 rounded-lg">
-                    <div class="text-center sm:text-left mb-4 sm:mb-0">
-                        <p class="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Activation Fee</p>
-                        <p class="text-3xl font-bold text-white">€70.00</p>
-                    </div>
-                    <button class="w-full sm:w-auto px-10 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded shadow-lg transition-all text-xs tracking-widest uppercase">
-                        Contact Admin Panel to Activate
-                    </button>
-                </div>
-
-            </div>
-        </div>
-
+    <div class="stop-container">
+        <div class="status-badge">SISTEMA OFF</div>
+        <h1 class="bot-stopped-title">BOT<br>DETENIDO</h1>
+        <p class="admin-msg">Acceso restringido por el administrador</p>
     </div>
 
 </body>
